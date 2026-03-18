@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarrioBendito - Multicam</title>
+    <style>
+        body { background-color: #0d1117; color: white; font-family: sans-serif; text-align: center; margin: 0; padding: 20px; }
+        .container { max-width: 500px; margin: auto; background: #161b22; padding: 30px; border-radius: 15px; border: 2px solid #de4c4c; }
+        h1 { color: #de4c4c; font-size: 2em; }
+        input { padding: 12px; border-radius: 5px; border: 1px solid #30363d; background: #010409; color: white; width: 80%; margin-bottom: 20px; }
+        .btn { background: #de4c4c; color: white; padding: 15px 30px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; width: 85%; }
+        #iframeContainer { display: none; width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; background: black; }
+        iframe { width: 100%; height: 100%; border: none; }
+    </style>
+</head>
+<body>
+
+    <div id="setup">
+        <div class="container">
+            <h1>BarrioBendito</h1>
+            <p>Panel de Multicam para el Torneo</p>
+            <input type="text" id="playerName" placeholder="Tu nombre de jugador..."><br>
+            <button class="btn" onclick="iniciarCaptura()">COMPARTIR PANTALLA / JUEGO</button>
+        </div>
+    </div>
+
+    <div id="iframeContainer">
+        <iframe id="vdoIframe" allow="camera;microphone;display-capture;autoplay;external-production"></iframe>
+    </div>
+
+    <script>
+        function iniciarCaptura() {
+            const name = document.getElementById('playerName').value;
+            if (!name) return alert("Escribe tu nombre primero");
+
+            const vdoUrl = `https://vdo.ninja/?push=${name}&clean=1&autostart=1&nobanner=1&preview=1`;
+
+            document.getElementById('setup').style.display = 'none';
+            document.getElementById('iframeContainer').style.display = 'block';
+            document.getElementById('vdoIframe').src = vdoUrl;
+        }
+    </script>
+</body>
+</html>
