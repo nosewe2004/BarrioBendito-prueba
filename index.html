@@ -29,15 +29,25 @@
         <iframe id="vdoIframe" allow="camera;microphone;display-capture;autoplay;external-production"></iframe>
     </div>
 
-    <script>
+        <script>
         function iniciarCaptura() {
             const name = document.getElementById('playerName').value;
             if (!name) return alert("Escribe tu nombre primero");
 
-            const vdoUrl = `https://vdo.ninja/?push=${name}&clean=1&autostart=1&nobanner=1&preview=1`;
+            // --- ESTO CAMBIA EL FONDO AL HACER CLIC ---
+            document.body.style.backgroundImage = "url('fondo.jpg')"; 
+            document.body.style.backgroundSize = "cover";
+            document.body.style.backgroundPosition = "center";
+            document.body.style.backgroundAttachment = "fixed";
+
+            const vdoUrl = `https://vdo.ninja{name}&clean=1&autostart=1&nobanner=1&preview=1`;
 
             document.getElementById('setup').style.display = 'none';
             document.getElementById('iframeContainer').style.display = 'block';
+            
+            // Hacemos el fondo del contenedor transparente para ver la imagen
+            document.getElementById('iframeContainer').style.background = 'transparent';
+
             document.getElementById('vdoIframe').src = vdoUrl;
         }
     </script>
